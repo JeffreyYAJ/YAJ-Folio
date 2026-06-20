@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="og" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050505"/>
+      <stop offset="50%" style="stop-color:#1e1b4b"/>
+      <stop offset="100%" style="stop-color:#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og)"/>
+  <text x="80" y="320" fill="#fafafa" font-family="system-ui,sans-serif" font-size="72" font-weight="700">Jeffrey YAJ</text>
+  <text x="80" y="390" fill="#818cf8" font-family="system-ui,sans-serif" font-size="36">Backend &amp; AI Engineer</text>
+</svg>

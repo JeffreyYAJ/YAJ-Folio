@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YAJFolio — Premium Portfolio
+
+A cinematic, interactive portfolio for **Jeffrey YAJ** — Backend & AI Engineer.
+
+Built with Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, GSAP, and Lenis smooth scrolling.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/              # Next.js App Router (layout, page, globals)
+├── components/
+│   ├── animations/   # Reveal, Stagger, Magnetic, TextReveal
+│   ├── layout/       # Navbar, Footer, Cursor, SectionWrapper
+│   ├── sections/     # All 10 portfolio sections
+│   └── ui/           # Button, Card, Badge, etc.
+├── lib/
+│   ├── data/         # Content (edit here — no UI changes needed)
+│   └── hooks/        # useReducedMotion, useScrollSpy
+└── types/            # Shared TypeScript types
+```
 
-## Learn More
+## Editing Content
 
-To learn more about Next.js, take a look at the following resources:
+All portfolio content lives in `src/lib/data/`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| File | Contents |
+|------|----------|
+| `site.ts` | Name, title, bio, nav links, socials |
+| `projects.ts` | 13 featured projects |
+| `skills.ts` | 9 interactive skill groups |
+| `timeline.ts` | Experience timeline entries |
+| `research.ts` | Research & experiment topics |
+| `startups.ts` | Entrepreneurial ventures |
+| `open-source.ts` | GitHub stats, pinned repos |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Replace placeholder assets in `public/assets/` and update `public/cv.pdf` with your real CV.
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Dark elegant design with electric blue / purple accents
+- Lenis smooth scrolling with reduced-motion support
+- Framer Motion reveals, stagger, magnetic buttons
+- GSAP ScrollTrigger timeline animation
+- Custom cursor + spotlight (desktop)
+- Floating navbar with scroll spy
+- Interactive skills, project modals, mailto contact form
+- Fully responsive (desktop, tablet, mobile)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Build
+
+```bash
+npm run build
+npm start
+```
+
+## Placeholders to Replace
+
+- LinkedIn URL in `src/lib/data/site.ts`
+- Education details in `src/lib/data/timeline.ts`
+- Project screenshots in `public/assets/projects/`
+- CV at `public/cv.pdf`
