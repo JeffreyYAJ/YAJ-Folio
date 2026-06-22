@@ -35,16 +35,18 @@ const iconMap = {
   cpu: Cpu,
 };
 
-export function ResearchSection() {
+export function ResearchSection({ showHeader = true }: { showHeader?: boolean }) {
   return (
     <SectionWrapper id="research" labelledBy="research-heading">
-      <SectionHeader
-        eyebrow="Research & Experiments"
-        title="Curiosity-driven exploration"
-        subtitle="The edge of knowledge is where the most interesting engineering problems live."
-        align="center"
-        className="mx-auto"
-      />
+      {showHeader && (
+        <SectionHeader
+          eyebrow="Research & Experiments"
+          title="Curiosity-driven exploration"
+          subtitle="The edge of knowledge is where the most interesting engineering problems live."
+          align="center"
+          className="mx-auto"
+        />
+      )}
 
       <h2 id="research-heading" className="sr-only">
         Research and Experiments

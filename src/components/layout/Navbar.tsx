@@ -1,20 +1,19 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { navLinks, siteConfig } from "@/lib/data/site";
-import { useScrollSpy } from "@/lib/hooks/useScrollSpy";
 import { cn } from "@/lib/utils/cn";
 
-const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
-
 export function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const activeId = useScrollSpy(["hero", ...sectionIds]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -30,10 +29,13 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  const handleNavClick = (href: string) => {
+  useEffect(() => {
     setMobileOpen(false);
-    const id = href.replace("#", "");
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   return (
@@ -43,58 +45,49 @@ export function Navbar() {
         <nav
           className={cn(
             "flex w-full max-w-5xl items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-300 md:px-6",
-            scrolled
+            scrolled || pathname !== "/"
               ? "border-white/10 bg-black/60 shadow-lg shadow-black/20 backdrop-blur-xl"
-              : "border-transparent bg-transparent",
+              : "border-white/5 bg-black/30 backdrop-blur-md",
           )}
           role="navigation"
           aria-label="Main navigation"
         >
-          <a
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("#hero");
-            }}
+          <Link
+            href="/"
             className="text-sm font-semibold tracking-tight text-white"
           >
             {siteConfig.name.split(" ")[0]}
             <span className="text-indigo-400">.</span>
-          </a>
+          </Link>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-1 lg:flex">
             {navLinks.map((link) => {
-              const id = link.href.replace("#", "");
-              const isActive = activeId === id;
+              const active = isActive(link.href);
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
                   className={cn(
                     "relative rounded-lg px-3 py-1.5 text-sm transition-colors",
-                    isActive ? "text-white" : "text-zinc-400 hover:text-white",
+                    active ? "text-white" : "text-zinc-400 hover:text-white",
                   )}
                 >
                   {link.label}
-                  {isActive && (
+                  {active && (
                     <motion.span
                       layoutId="nav-indicator"
                       className="absolute inset-0 -z-10 rounded-lg bg-white/10"
                       transition={{ type: "spring", stiffness: 350, damping: 30 }}
                     />
                   )}
-                </a>
+                </Link>
               );
             })}
           </div>
 
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white lg:hidden"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -107,27 +100,26 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <div className="flex h-full flex-col items-center justify-center gap-6">
+              <Link href="/" className="text-2xl font-medium text-white">
+                Home
+              </Link>
               {navLinks.map((link, i) => (
-                <motion.a
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className="text-2xl font-medium text-white"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  {link.label}
-                </motion.a>
+                  <Link href={link.href} className="text-2xl font-medium text-white">
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>

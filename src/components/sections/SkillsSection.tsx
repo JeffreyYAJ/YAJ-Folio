@@ -33,16 +33,18 @@ const iconMap = {
   code: Code,
 };
 
-export function SkillsSection() {
+export function SkillsSection({ showHeader = true }: { showHeader?: boolean }) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
     <SectionWrapper id="skills" labelledBy="skills-heading">
-      <SectionHeader
-        eyebrow="Skills"
-        title="Interactive expertise across the stack"
-        subtitle="Hover a domain to explore the technologies I work with daily."
-      />
+      {showHeader && (
+        <SectionHeader
+          eyebrow="Skills"
+          title="Interactive expertise across the stack"
+          subtitle="Hover a domain to explore the technologies I work with daily."
+        />
+      )}
 
       <h2 id="skills-heading" className="sr-only">
         Skills

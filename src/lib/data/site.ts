@@ -11,14 +11,13 @@ export const siteConfig = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Open Source", href: "#open-source" },
-  { label: "Research", href: "#research" },
-  { label: "Startups", href: "#startups" },
-  { label: "Timeline", href: "#timeline" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Skills", href: "/skills" },
+  { label: "Research", href: "/research" },
+  { label: "Open Source", href: "/open-source" },
+  { label: "Startups", href: "/startups" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -37,16 +36,4 @@ export const socialLinks: SocialLink[] = [
     href: "mailto:jeffreyyaj@gmail.com",
     icon: "email",
   },
-];
-
-export const sectionIds = [
-  "hero",
-  "about",
-  "skills",
-  "projects",
-  "open-source",
-  "research",
-  "startups",
-  "timeline",
-  "contact",
 ];

@@ -16,14 +16,16 @@ const statusStyles = {
   concept: "bg-amber-500/10 text-amber-400 border-amber-500/20",
 };
 
-export function StartupSection() {
+export function StartupSection({ showHeader = true }: { showHeader?: boolean }) {
   return (
     <SectionWrapper id="startups" labelledBy="startups-heading">
-      <SectionHeader
-        eyebrow="Entrepreneurial Journey"
-        title="Product thinking in action"
-        subtitle="Startups aren't just code — they're problems worth solving, users worth serving, and systems worth building."
-      />
+      {showHeader && (
+        <SectionHeader
+          eyebrow="Entrepreneurial Journey"
+          title="Product thinking in action"
+          subtitle="Startups aren't just code — they're problems worth solving, users worth serving, and systems worth building."
+        />
+      )}
 
       <StaggerContainer className="grid gap-6 md:grid-cols-2">
         {startups.map((startup) => {

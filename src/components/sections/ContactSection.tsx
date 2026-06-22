@@ -11,7 +11,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { siteConfig, socialLinks } from "@/lib/data/site";
 
-export function ContactSection() {
+export function ContactSection({ showHeader = true }: { showHeader?: boolean }) {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
 
@@ -29,21 +29,31 @@ export function ContactSection() {
   return (
     <SectionWrapper id="contact" labelledBy="contact-heading">
       <div className="grid gap-16 lg:grid-cols-2">
-        <div>
-          <SectionHeader
-            eyebrow="Contact"
-            title="Let's build something remarkable"
-            subtitle="Have a project in mind, an open-source collaboration, or just want to connect? I'd love to hear from you."
-          />
+        {showHeader ? (
+          <div>
+            <SectionHeader
+              eyebrow="Contact"
+              title="Let's build something remarkable"
+              subtitle="Have a project in mind, an open-source collaboration, or just want to connect? I'd love to hear from you."
+            />
 
-          <Reveal delay={0.3}>
+            <Reveal delay={0.3}>
+              <div className="flex items-center gap-3">
+                {socialLinks.map((link) => (
+                  <SocialLink key={link.label} link={link} />
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        ) : (
+          <Reveal>
             <div className="flex items-center gap-3">
               {socialLinks.map((link) => (
                 <SocialLink key={link.label} link={link} />
               ))}
             </div>
           </Reveal>
-        </div>
+        )}
 
         <Reveal delay={0.2}>
           <form

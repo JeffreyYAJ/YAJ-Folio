@@ -13,6 +13,22 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Architecture
+
+Multi-page portfolio with a rich global background (aurora gradients, grid, particles).
+
+| Route | Page |
+|-------|------|
+| `/` | Home — hero, stats, featured projects, explore cards |
+| `/about` | About + timeline |
+| `/projects` | Full project gallery |
+| `/projects/[slug]` | Individual project case study |
+| `/skills` | Interactive skill domains |
+| `/research` | Research & experiments |
+| `/open-source` | GitHub stats & pinned repos |
+| `/startups` | Entrepreneurial ventures |
+| `/contact` | Contact form |
+
 ## Project Structure
 
 ```

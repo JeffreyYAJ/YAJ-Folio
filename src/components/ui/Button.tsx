@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type HTMLMotionProps } from "framer-motion";
+import Link from "next/link";
 import { forwardRef } from "react";
 
 import { MagneticWrapper } from "@/components/animations/MagneticWrapper";
@@ -41,16 +42,28 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     if (href) {
+      const isInternal = href.startsWith("/") || href.startsWith("#");
+      const linkContent = (
+        <motion.span
+          className={classes}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {children}
+        </motion.span>
+      );
+
       return (
         <MagneticWrapper disabled={!magnetic}>
-          <motion.a
-            href={href}
-            className={classes}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            {children}
-          </motion.a>
+          {isInternal ? (
+            <Link href={href} className="inline-block">
+              {linkContent}
+            </Link>
+          ) : (
+            <a href={href} className="inline-block">
+              {linkContent}
+            </a>
+          )}
         </MagneticWrapper>
       );
     }

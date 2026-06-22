@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { CustomCursor, Spotlight } from "@/components/layout/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { PageBackground } from "@/components/layout/PageBackground";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { siteConfig } from "@/lib/data/site";
@@ -52,11 +53,12 @@ export default function RootLayout({
           Skip to content
         </a>
         <SmoothScrollProvider>
+          <PageBackground />
           <NoiseOverlay />
           <Spotlight />
           <CustomCursor />
           <Navbar />
-          {children}
+          <div className="relative z-10">{children}</div>
           <Footer />
         </SmoothScrollProvider>
       </body>

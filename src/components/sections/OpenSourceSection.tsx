@@ -51,7 +51,7 @@ function ContributionGraph() {
   );
 }
 
-export function OpenSourceSection() {
+export function OpenSourceSection({ showHeader = true }: { showHeader?: boolean }) {
   const [copied, setCopied] = useState(false);
 
   const copyCommand = () => {
@@ -62,11 +62,13 @@ export function OpenSourceSection() {
 
   return (
     <SectionWrapper id="open-source" labelledBy="opensource-heading">
-      <SectionHeader
-        eyebrow="Open Source"
-        title="Building in public"
-        subtitle="Open source is where I learn fastest and give back to the community that shaped me."
-      />
+      {showHeader && (
+        <SectionHeader
+          eyebrow="Open Source"
+          title="Building in public"
+          subtitle="Open source is where I learn fastest and give back to the community that shaped me."
+        />
+      )}
 
       <div className="grid gap-6 md:grid-cols-3">
         {[

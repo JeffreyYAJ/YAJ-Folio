@@ -32,19 +32,31 @@ const storyCards = [
   },
 ];
 
-export function AboutSection() {
+type AboutSectionProps = {
+  compact?: boolean;
+};
+
+export function AboutSection({ compact = false }: AboutSectionProps) {
   const educationHighlights = timelineEntries.filter((e) => e.type === "education");
 
   return (
     <SectionWrapper id="about" labelledBy="about-heading">
       <div className="grid items-start gap-16 lg:grid-cols-2">
-        <div>
-          <SectionHeader
-            eyebrow="About Me"
-            title="Crafting the future, one system at a time"
-            subtitle={siteConfig.bio}
-          />
-        </div>
+        {!compact && (
+          <div>
+            <SectionHeader
+              eyebrow="About Me"
+              title="Crafting the future, one system at a time"
+              subtitle={siteConfig.bio}
+            />
+          </div>
+        )}
+
+        {compact && (
+          <Reveal>
+            <p className="text-lg leading-relaxed text-zinc-400">{siteConfig.bio}</p>
+          </Reveal>
+        )}
 
         <Reveal delay={0.2} className="relative mx-auto w-full max-w-md lg:mx-0">
           <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-indigo-950/50 to-purple-950/30">

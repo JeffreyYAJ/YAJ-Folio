@@ -1,25 +1,16 @@
-import { AboutSection } from "@/components/sections/AboutSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { HomeAboutTeaser, HomeStatsSection } from "@/components/sections/HomeStatsSection";
+import { HomeExploreSection } from "@/components/sections/HomeExploreSection";
+import { HomeFeaturedSection } from "@/components/sections/HomeFeaturedSection";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { OpenSourceSection } from "@/components/sections/OpenSourceSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { ResearchSection } from "@/components/sections/ResearchSection";
-import { SkillsSection } from "@/components/sections/SkillsSection";
-import { StartupSection } from "@/components/sections/StartupSection";
-import { TimelineSection } from "@/components/sections/TimelineSection";
 
 export default function Home() {
   return (
     <main id="main-content">
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <OpenSourceSection />
-      <ResearchSection />
-      <StartupSection />
-      <TimelineSection />
-      <ContactSection />
+      <HomeStatsSection />
+      <HomeAboutTeaser />
+      <HomeFeaturedSection />
+      <HomeExploreSection />
     </main>
   );
 }

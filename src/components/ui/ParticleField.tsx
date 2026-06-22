@@ -66,7 +66,7 @@ export function ParticleField() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(99, 102, 241, 0.35)";
+        ctx.fillStyle = "rgba(99, 102, 241, 0.55)";
         ctx.fill();
       });
 
@@ -90,7 +90,7 @@ export function ParticleField() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 opacity-60"
+      className="pointer-events-none absolute inset-0 z-0 opacity-80"
       aria-hidden="true"
     />
   );
