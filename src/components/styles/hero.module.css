@@ -1,0 +1,304 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--navbar-h) + var(--space-12)) var(--space-6) var(--space-16);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* --- Fonds dégradés dualité --- */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 55%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.hero::before {
+  left: 0;
+  background: radial-gradient(
+    ellipse at left center,
+    var(--design-soft) 0%,
+    transparent 70%
+  );
+}
+
+.hero::after {
+  right: 0;
+  background: radial-gradient(
+    ellipse at right center,
+    var(--dev-soft) 0%,
+    transparent 70%
+  );
+}
+
+/* --- Ligne pointillée centrale --- */
+.heroLine {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  width: 0;
+  border-left: 1px dashed var(--border);
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Point animé qui descend sur la ligne */
+.heroLine::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px var(--text);
+  animation: travel 6s ease-in-out infinite;
+}
+
+@keyframes travel {
+  0%, 100% { top: 0%; opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50% { top: 100%; }
+}
+
+/* --- Grille interne --- */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-12);
+  width: min(100%, var(--container));
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Colonnes --- */
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 380px;
+}
+
+.colLeft {
+  align-items: flex-end;
+  text-align: right;
+  margin-left: auto;
+}
+
+.colRight {
+  align-items: flex-start;
+  text-align: left;
+  margin-right: auto;
+}
+
+/* --- Eyebrow --- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.eyebrowDesign { color: var(--design); }
+.eyebrowDev { color: var(--dev); }
+
+/* --- Titre principal --- */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, var(--fs-3xl));
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.titleHighlight {
+  display: inline-block;
+  position: relative;
+}
+
+.titleHighlight::after {
+  content: "";
+  position: absolute;
+  bottom: 0.05em;
+  left: 0;
+  right: 0;
+  height: 0.35em;
+  z-index: -1;
+  opacity: 0.25;
+  border-radius: 2px;
+}
+
+.titleDesign .titleHighlight::after { background: var(--design); }
+.titleDev .titleHighlight::after { background: var(--dev); }
+
+/* --- Citation --- */
+.quote {
+  font-size: var(--fs-base);
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.quote::before,
+.quote::after {
+  font-family: var(--font-display);
+  font-size: 1.5em;
+  line-height: 0;
+  vertical-align: -0.3em;
+  opacity: 0.4;
+}
+
+.quote::before { content: "« "; margin-right: 0.15em; }
+.quote::after { content: " »"; margin-left: 0.15em; }
+
+/* --- CTA --- */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: transform var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease),
+              background var(--duration) var(--ease);
+}
+
+.cta svg {
+  transition: transform var(--duration) var(--ease);
+}
+
+.cta:hover svg { transform: translateX(4px); }
+
+.ctaDesign {
+  background: var(--design);
+  color: #1a0e0a;
+}
+
+.ctaDesign:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--design-soft);
+}
+
+.ctaDev {
+  background: transparent;
+  color: var(--dev);
+  border: 1px solid var(--dev);
+}
+
+.ctaDev:hover {
+  background: var(--dev-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--dev-soft);
+}
+
+/* --- Portrait central --- */
+.portrait {
+  position: relative;
+  width: clamp(180px, 22vw, 280px);
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  filter: grayscale(1) contrast(1.05);
+  z-index: 3;
+}
+
+/* Placeholder tant que tu n'as pas la photo */
+.portraitPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, var(--design-soft), transparent 50%),
+    linear-gradient(315deg, var(--dev-soft), transparent 50%),
+    var(--surface-2);
+}
+
+.portraitPlaceholder span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Halos lumineux derrière le portrait */
+.portraitGlow {
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.portraitGlow::before,
+.portraitGlow::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+}
+
+.portraitGlow::before {
+  top: 0; left: 0;
+  background: var(--design);
+}
+
+.portraitGlow::after {
+  bottom: 0; right: 0;
+  background: var(--dev);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--navbar-h) + var(--space-8));
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .col {
+    max-width: 100%;
+    align-items: center !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+
+  .portrait {
+    order: -1;
+    margin-inline: auto;
+    width: clamp(160px, 50vw, 220px);
+  }
+
+  .heroLine { display: none; }
+}
