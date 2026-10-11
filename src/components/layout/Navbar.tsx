@@ -44,23 +44,20 @@ export function Navbar() {
       <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
         <nav
           className={cn(
-            "flex w-full max-w-5xl items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-300 md:px-6",
+            "flex w-full max-w-[1280px] items-center justify-between rounded-[20px] border border-[#c9c3b5] bg-[#f5f1e9]/90 px-5 py-3 shadow-[0_1px_0_rgba(0,0,0,0.05)] backdrop-blur-sm transition-all duration-300 md:px-7",
             scrolled || pathname !== "/"
-              ? "border-white/10 bg-black/60 shadow-lg shadow-black/20 backdrop-blur-xl"
-              : "border-white/5 bg-black/30 backdrop-blur-md",
+              ? "shadow-[0_10px_30px_rgba(15,23,42,0.06)]"
+              : "",
           )}
           role="navigation"
           aria-label="Main navigation"
         >
-          <Link
-            href="/"
-            className="text-sm font-semibold tracking-tight text-white"
-          >
-            {siteConfig.name.split(" ")[0]}
-            <span className="text-indigo-400">.</span>
+          <Link href="/" className="flex items-center gap-3 text-[15px] font-semibold tracking-[-0.04em] text-[#101820]">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#1d1d1d] bg-[#101820] text-[11px] font-bold text-[#f4efe6]">JY</span>
+            <span>{siteConfig.name}</span>
           </Link>
 
-          <div className="hidden items-center gap-1 lg:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return (
@@ -68,15 +65,15 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative rounded-lg px-3 py-1.5 text-sm transition-colors",
-                    active ? "text-white" : "text-zinc-400 hover:text-white",
+                    "relative text-[13px] font-medium transition-colors",
+                    active ? "text-[#101820]" : "text-[#4a4a4a] hover:text-[#101820]",
                   )}
                 >
                   {link.label}
                   {active && (
                     <motion.span
                       layoutId="nav-indicator"
-                      className="absolute inset-0 -z-10 rounded-lg bg-white/10"
+                      className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full bg-[#1b9cc5]"
                       transition={{ type: "spring", stiffness: 350, damping: 30 }}
                     />
                   )}
@@ -85,15 +82,23 @@ export function Navbar() {
             })}
           </div>
 
-          <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white lg:hidden"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2 text-[#101820]">
+            <button type="button" className="flex h-8 w-8 items-center justify-center rounded-full border border-[#bdb7ac] bg-white/30 text-[14px]" aria-label="Search">
+              ⌕
+            </button>
+            <button type="button" className="flex h-8 w-8 items-center justify-center rounded-full border border-[#bdb7ac] bg-white/30 text-[14px]" aria-label="Toggle menu">
+              ☼
+            </button>
+            <button
+              type="button"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#bdb7ac] bg-[#f3efe8] text-[#101820] lg:hidden"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
         </nav>
       </header>
 

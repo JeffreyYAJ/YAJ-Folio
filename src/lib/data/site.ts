@@ -11,12 +11,9 @@ export const siteConfig = {
 };
 
 export const navLinks: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "Works", href: "/projects" },
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Skills", href: "/skills" },
-  { label: "Research", href: "/research" },
-  { label: "Open Source", href: "/open-source" },
-  { label: "Startups", href: "/startups" },
   { label: "Contact", href: "/contact" },
 ];
 
