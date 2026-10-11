@@ -1,0 +1,138 @@
+.philosophy {
+  position: relative;
+  padding: var(--space-24) 0;
+  isolation: isolate;
+}
+
+.philosophy::before,
+.philosophy::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 60%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(80px);
+  opacity: 0.25;
+}
+
+.philosophy::before {
+  left: 0;
+  background: radial-gradient(ellipse, var(--design) 0%, transparent 70%);
+}
+
+.philosophy::after {
+  right: 0;
+  background: radial-gradient(ellipse, var(--dev) 0%, transparent 70%);
+}
+
+/* --- Citation --- */
+.quote {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-12) var(--space-8);
+}
+
+/* Grands guillemets décoratifs */
+.quote::before,
+.quote::after {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 12vw, 10rem);
+  line-height: 1;
+  color: var(--border);
+  pointer-events: none;
+  user-select: none;
+}
+
+.quote::before {
+  content: "«";
+  top: -1rem;
+  left: -1rem;
+}
+
+.quote::after {
+  content: "»";
+  bottom: -4rem;
+  right: -1rem;
+}
+
+.text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.text em {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Séparation des deux phrases avec un saut */
+.text br + br {
+  display: block;
+  content: "";
+  margin-top: var(--space-4);
+}
+
+/* Ligne gradient entre les deux phrases */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+  color: var(--text-dim);
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.dividerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--design), var(--dev));
+}
+
+/* --- Signature --- */
+.author {
+  margin-top: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.author::before,
+.author::after {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--border);
+}
+
+@media (max-width: 640px) {
+  .quote {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .quote::before { top: -2rem; left: 0; }
+  .quote::after { bottom: -5rem; right: 0; }
+}
