@@ -1,0 +1,192 @@
+.expertise {
+  position: relative;
+  padding: var(--space-24) 0;
+  isolation: isolate;
+}
+
+/* --- En-tête de section --- */
+.header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+}
+
+.badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--design), var(--dev));
+}
+
+/* --- Layout 2 colonnes --- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Ligne pointillée centrale */
+.grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  border-left: 1px dashed var(--border);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* --- Colonne --- */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.columnTitle {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.columnTitle::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.colDesign .columnTitle::before { background: var(--design); }
+.colDev .columnTitle::before { background: var(--dev); }
+
+/* Symétrie : Design aligné à droite, Dev à gauche */
+.colDesign {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.colDesign .columnTitle {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* --- Liste des skills --- */
+.skillList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.skill {
+  font-size: var(--fs-base);
+  color: var(--text-muted);
+  padding: var(--space-2) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  transition: color var(--duration) var(--ease);
+  cursor: default;
+}
+
+/* Petit tiret devant chaque skill */
+.skill::before {
+  content: "";
+  width: 16px;
+  height: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+  transition: width var(--duration) var(--ease),
+              background var(--duration) var(--ease);
+}
+
+/* Côté Design : tiret à droite */
+.colDesign .skill {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* Hovers */
+.colDesign .skill:hover {
+  color: var(--design);
+}
+
+.colDev .skill:hover {
+  color: var(--dev);
+}
+
+.colDesign .skill:hover::before {
+  width: 24px;
+  background: var(--design);
+}
+
+.colDev .skill:hover::before {
+  width: 24px;
+  background: var(--dev);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .grid::before {
+    display: none;
+  }
+
+  .colDesign,
+  .colDesign .columnTitle,
+  .colDesign .skill {
+    text-align: left;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}
