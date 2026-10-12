@@ -2,13 +2,13 @@
   position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;       /* ← AJOUT : empile verticalement */
   align-items: center;
   justify-content: center;
   padding: calc(var(--navbar-h) + var(--space-12)) var(--space-6) var(--space-16);
   overflow: hidden;
   isolation: isolate;
 }
-
 /* --- Fonds dégradés dualité --- */
 .hero::before,
 .hero::after {
@@ -301,4 +301,272 @@
   }
 
   .heroLine { display: none; }
+}
+
+/* ============================================================
+   STYLE FIGMA — Côté Designer (titre serif italique rose)
+   ============================================================ */
+
+/* Titre DESIGNER — serif italique, rose design */
+.titleDesign {
+  font-family: var(--font-display); /* Playfair Display */
+  font-style: italic;
+  font-weight: 500;
+  color: var(--design-deep);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* Titre DEV — monospace, code-style */
+.titleDev {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* Pas de surlignage derrière côté Dev */
+.titleDev .titleHighlight::after {
+  display: none;
+}
+
+/* ============================================================
+   CHIPS — badges sous les descriptions
+   ============================================================ */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.colLeft .chips {
+  justify-content: flex-end;
+}
+
+.colRight .chips {
+  justify-content: flex-start;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Chips côté Design — rose pâle */
+.colLeft .chip {
+  background: var(--design-soft);
+  color: var(--design-deep);
+  border-color: color-mix(in srgb, var(--design) 25%, transparent);
+}
+
+/* Chips côté Dev — teal pâle */
+.colRight .chip {
+  background: var(--dev-soft);
+  color: var(--dev-deep);
+  border-color: color-mix(in srgb, var(--dev) 25%, transparent);
+}
+
+/* ============================================================
+   PORTRAIT → SPLIT DESIGNER × ENGINEER
+   ============================================================ */
+
+.split {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.splitLeft,
+.splitRight {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-4);
+}
+
+.splitLeft {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--design) 20%, var(--surface)) 0%,
+    var(--surface) 100%
+  );
+}
+
+.splitRight {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--dev) 20%, var(--surface)) 0%,
+    var(--surface) 100%
+  );
+}
+
+/* Badges "DESIGNER" / "ENGINEER" */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.badgeDesign {
+  background: var(--design);
+  color: #fff;
+}
+
+.badgeDev {
+  background: var(--dev);
+  color: #fff;
+}
+
+/* Placeholder central */
+.splitPlaceholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splitPlaceholder span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Petits mockups UI/Code dans chaque moitié */
+.mockUI,
+.mockCode {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.mockUI {
+  background: color-mix(in srgb, var(--design) 15%, transparent);
+  color: var(--design-deep);
+  border: 1px solid color-mix(in srgb, var(--design) 30%, transparent);
+}
+
+.mockCode {
+  background: color-mix(in srgb, var(--dev) 15%, transparent);
+  color: var(--dev-deep);
+  border: 1px solid color-mix(in srgb, var(--dev) 30%, transparent);
+}
+
+.mockLabel,
+.mockCode span {
+  opacity: 0.9;
+}
+
+/* ============================================================
+   CAPTION
+   ============================================================ */
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: var(--space-8);
+  letter-spacing: 0.12em;
+}
+
+/* ============================================================
+   RESPONSIVE — Split sur mobile
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .colLeft .chips,
+  .colRight .chips {
+    justify-content: center;
+  }
+
+  .caption {
+    margin-top: var(--space-6);
+  }
+}
+
+
+/* ============================================================
+   BLOC INTRO — titre principal en haut de la Hero
+   ============================================================ */
+
+.heroIntro {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto var(--space-16);
+  padding: 0 var(--space-6);
+}
+
+.heroTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.heroAccent {
+  font-family: var(--font-display); /* Playfair Display */
+  font-style: italic;
+  font-weight: 500;
+  color: var(--design-deep);
+  letter-spacing: -0.01em;
+}
+
+.heroSubtitle {
+  margin-top: var(--space-6);
+  font-size: var(--fs-base);
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .heroIntro {
+    margin-bottom: var(--space-12);
+  }
+
+  .heroTitle {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
+  .heroSubtitle br {
+    display: none; /* sur mobile, le sous-titre s'enroule naturellement */
+  }
 }

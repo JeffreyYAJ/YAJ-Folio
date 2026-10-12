@@ -1,37 +1,52 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
 import styles from "./styles/hero.module.css";
 
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
       {/* Ligne pointillée centrale */}
+
+      {/* ===== BLOC INTRO (nouveau) ===== */}
+      <div className={styles.heroIntro}>
+        <h1 className={styles.heroTitle}>
+          I Design Experiences
+          <br />
+          That Make An <span className={styles.heroAccent}>Impact</span>
+          <br />
+          <span className={styles.heroAccent}>Daily</span>
+        </h1>
+        <p className={styles.heroSubtitle}>
+          Bridging sensitive UI/UX craftsmanship with reactive frontend architecture.
+          <br />
+          Bringing thoughtful aesthetics to scalable digital software.
+        </p>
+      </div>
       <div className={styles.heroLine} aria-hidden="true" />
 
       <div className={styles.heroGrid}>
         {/* ===== CÔTÉ DESIGNER ===== */}
         <div className={`${styles.col} ${styles.colLeft}`}>
           <span className={`${styles.eyebrow} ${styles.eyebrowDesign}`}>
-            // DESIGNER
+            01 · UI/UX &amp; DESIGN
           </span>
 
           <h1 className={`${styles.title} ${styles.titleDesign}`}>
-            UI/UX Design
-            <br />
-            &amp; <span className={styles.titleHighlight}>Visual Identity</span>
+            &ldquo;Crafting emotional interfaces with{" "}
+            <span className={styles.titleHighlight}>pixel-level</span> devotion.&rdquo;
           </h1>
 
           <p className={styles.quote}>
-            I turn ideas into visual stories — from brand identity to interfaces,
-            designed with clarity, emotion and impact.
+            Visual harmony, typography discipline, intuitive gestures, design
+            tokens, and obsessive attention to spatial balance.
           </p>
 
-          <a href="#contact" className={`${styles.cta} ${styles.ctaDesign}`}>
-            Let&apos;s talk
-            <ArrowUpRight size={16} />
-          </a>
+          <div className={styles.chips}>
+            <span className={styles.chip}>Figma Variables</span>
+            <span className={styles.chip}>Design Systems</span>
+            <span className={styles.chip}>Micro-motion</span>
+          </div>
         </div>
 
-        {/* ===== PORTRAIT CENTRAL ===== */}
+        {/* ===== PORTRAIT CENTRAL (structure d'origine) ===== */}
         <div className={styles.portrait}>
           <div className={styles.portraitGlow} aria-hidden="true" />
           <div className={styles.portraitPlaceholder}>
@@ -51,24 +66,25 @@ export default function Hero() {
         {/* ===== CÔTÉ DEVELOPER ===== */}
         <div className={`${styles.col} ${styles.colRight}`}>
           <span className={`${styles.eyebrow} ${styles.eyebrowDev}`}>
-            // DEVELOPER
+            02 · FULL-STACK ARCHITECTURE
           </span>
 
           <h2 className={`${styles.title} ${styles.titleDev}`}>
-            Fullstack Dev
+            &lt;Architecting /&gt;
             <br />
-            &amp; <span className={styles.titleHighlight}>AI Engineer</span>
+            High-Scale Systems
           </h2>
 
           <p className={styles.quote}>
-            I build scalable backends, automate with Linux, and explore AI
-            to solve real problems and ship useful tools.
+            Type-safe React 19, zero-bundle overheads, reactive state engines,
+            Next.js server actions, and cloud infrastructure ready to ship.
           </p>
 
-          <a href="#work" className={`${styles.cta} ${styles.ctaDev}`}>
-            View my work
-            <ArrowRight size={16} />
-          </a>
+          <div className={styles.chips}>
+            <span className={styles.chip}>TypeScript 5</span>
+            <span className={styles.chip}>Next.js 14+</span>
+            <span className={styles.chip}>WebGL/Three</span>
+          </div>
         </div>
       </div>
     </section>
