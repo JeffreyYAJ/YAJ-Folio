@@ -7,7 +7,7 @@ import Philosophy from "@/components/Philosophy";
 
 export default function Home() {
   return (
-    <main>
+    <main >
       <Hero />
       <Expertise />
       <Work />

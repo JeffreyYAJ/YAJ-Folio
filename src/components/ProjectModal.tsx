@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { X, ExternalLink, Github } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import styles from "./styles/modal.module.css";
 import type { Project } from "@/data/content";
 
