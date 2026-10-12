@@ -1,10 +1,3 @@
-import { SiAdobeillustrator } from 'react-icons/si';
-import { SiAdobephotoshop } from 'react-icons/si';
-import { SiCanva } from 'react-icons/si';
-
-console.log({
-  SiAdobeillustrator, SiAdobephotoshop, SiCanva,
-});
 
 import styles from "./styles/expertise.module.css";
 import { designSkills, devSkills } from "@/data/content";

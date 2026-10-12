@@ -1,9 +1,6 @@
 import type { IconType } from "react-icons";
 import {
   SiFigma,
-  SiAdobeillustrator,
-  SiAdobephotoshop,
-  SiCanva,
   SiPython,
   SiFastapi,
   SiDjango,
@@ -23,37 +20,46 @@ import {
   FiCpu,
   FiDatabase,
 } from "react-icons/fi";
+import {
+  IllustratorIcon,
+  PhotoshopIcon,
+  CanvaIcon,
+} from "@/components/ui/BrandIcons";
+
+type AnyIcon =
+  | IconType
+  | ((props: { size?: number; className?: string; style?: React.CSSProperties }) => JSX.Element);
 
 export type Skill = {
   name: string;
-  Icon: IconType;
-  color: string; // couleur officielle de la marque
+  Icon: AnyIcon;
+  color?: string;
 };
 
 export const designSkills: Skill[] = [
-  { name: "Figma",               Icon: SiFigma,            color: "#F24E1E" }, // orange/rouge Figma
-  { name: "Adobe Illustrator",   Icon: SiAdobeillustrator, color: "#FF9A00" }, // orange Ai
-  { name: "Adobe Photoshop",     Icon: SiAdobephotoshop,   color: "#31A8FF" }, // bleu Ps
-  { name: "Canva",               Icon: SiCanva,            color: "#00C4CC" }, // turquoise Canva
-  { name: "UI/UX Design",        Icon: FiLayout,           color: "#c31015" }, // ton rouge FORCE
-  { name: "Branding & Identity", Icon: FiPenTool,          color: "#c31015" },
-  { name: "Prototyping",         Icon: FiLayers,           color: "#c31015" },
+  { name: "Figma",               Icon: SiFigma,           color: "#F24E1E" },
+  { name: "Adobe Illustrator",   Icon: IllustratorIcon }, // couleur intégrée
+  { name: "Adobe Photoshop",     Icon: PhotoshopIcon },   // couleur intégrée
+  { name: "Canva",               Icon: CanvaIcon },       // couleur intégrée
+  { name: "UI/UX Design",        Icon: FiLayout,          color: "#c31015" },
+  { name: "Branding & Identity", Icon: FiPenTool,         color: "#c31015" },
+  { name: "Prototyping",         Icon: FiLayers,          color: "#c31015" },
 ];
 
 export const devSkills: Skill[] = [
-  { name: "Python",                Icon: SiPython,        color: "#3776AB" }, // bleu Python
-  { name: "FastAPI",               Icon: SiFastapi,       color: "#009688" }, // teal FastAPI
-  { name: "Django",                Icon: SiDjango,        color: "#092E20" }, // vert sombre Django
-  { name: "Linux",                 Icon: SiLinux,         color: "#FCC624" }, // jaune Tux
-  { name: "Shell",                 Icon: SiGnubash,       color: "#4EAA25" }, // vert Bash
-  { name: "Docker",                Icon: SiDocker,        color: "#2496ED" }, // bleu Docker
-  { name: "API & Microservices",   Icon: FiServer,        color: "#016727" }, // vert FORCE
+  { name: "Python",                Icon: SiPython,        color: "#3776AB" },
+  { name: "FastAPI",               Icon: SiFastapi,       color: "#009688" },
+  { name: "Django",                Icon: SiDjango,        color: "#092E20" },
+  { name: "Linux",                 Icon: SiLinux,         color: "#FCC624" },
+  { name: "Shell",                 Icon: SiGnubash,       color: "#4EAA25" },
+  { name: "Docker",                Icon: SiDocker,        color: "#2496ED" },
+  { name: "API & Microservices",   Icon: FiServer,        color: "#016727" },
   { name: "System Administration", Icon: FiCpu,           color: "#016727" },
   { name: "AI & Data",             Icon: FiDatabase,      color: "#016727" },
-  { name: "Machine Learning",      Icon: SiScikitlearn,   color: "#F7931E" }, // orange scikit
-  { name: "Computer Vision",       Icon: SiOpencv,        color: "#5C3EE8" }, // violet OpenCV
-  { name: "Data Pipelines",        Icon: SiApacheairflow, color: "#017CEE" }, // bleu Airflow
-  { name: "RAG / LLMs",            Icon: SiLangchain,     color: "#1C3C3C" }, // vert/noir LangChain
+  { name: "Machine Learning",      Icon: SiScikitlearn,   color: "#F7931E" },
+  { name: "Computer Vision",       Icon: SiOpencv,        color: "#5C3EE8" },
+  { name: "Data Pipelines",        Icon: SiApacheairflow, color: "#017CEE" },
+  { name: "RAG / LLMs",            Icon: SiLangchain,     color: "#1C3C3C" },
 ];
 export type Project = {
   id: string;
