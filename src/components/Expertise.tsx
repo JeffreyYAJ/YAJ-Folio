@@ -1,5 +1,15 @@
+import { SiAdobeillustrator } from 'react-icons/si';
+import { SiAdobephotoshop } from 'react-icons/si';
+import { SiCanva } from 'react-icons/si';
+
+console.log({
+  SiAdobeillustrator, SiAdobephotoshop, SiCanva,
+});
+
 import styles from "./styles/expertise.module.css";
 import { designSkills, devSkills } from "@/data/content";
+
+
 
 export default function Expertise() {
   return (
@@ -18,8 +28,13 @@ export default function Expertise() {
           <div className={`${styles.column} ${styles.colDesign}`}>
             <h3 className={styles.columnTitle}>Design</h3>
             <ul className={styles.skillList}>
-              {designSkills.map((name) => (
+              {designSkills.map(({ name, Icon, color }) => (
                 <li key={name} className={styles.skill}>
+                  <Icon
+                    className={styles.skillIcon}
+                    style={{ color }}
+                    aria-hidden="true"
+                  />
                   <span>{name}</span>
                 </li>
               ))}
@@ -30,8 +45,13 @@ export default function Expertise() {
           <div className={`${styles.column} ${styles.colDev}`}>
             <h3 className={styles.columnTitle}>Development</h3>
             <ul className={styles.skillList}>
-              {devSkills.map((name) => (
+              {devSkills.map(({ name, Icon, color }) => (
                 <li key={name} className={styles.skill}>
+                  <Icon
+                    className={styles.skillIcon}
+                    style={{ color }}
+                    aria-hidden="true"
+                  />
                   <span>{name}</span>
                 </li>
               ))}
